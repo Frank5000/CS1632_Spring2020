@@ -43,6 +43,7 @@ public class GameOfLifePinningTest {
 	// Convenience
 	int size;
 	Cell deadCell;
+	Cell liveCell;
 	Cell[] deadRow;
 
 	@Before
@@ -57,6 +58,8 @@ public class GameOfLifePinningTest {
 		 */
 
 		size = 5;
+		deadCell = new Cell(false);
+		liveCell = new Cell(true);
 
 		testMainPanel = new MainPanel(size);
 		testCells = new Cell[size][size];
@@ -91,6 +94,16 @@ public class GameOfLifePinningTest {
 	@Test
 	public void testIterateCellDead() {
 		assertFalse(testMainPanel.iterateCell(1, 1));
+	}
+
+	@Test
+	public void testToStringAlive() {
+		assertEquals("X", liveCell.toString());
+	}
+
+	@Test
+	public void testToStringDead() {
+		assertEquals(".", deadCell.toString());
 	}
 
 	/**
