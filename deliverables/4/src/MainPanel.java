@@ -12,10 +12,6 @@ public class MainPanel extends JPanel {
 
 	private int _size = 0;
 
-	private int _maxCount = 50000000;
-
-	public int _r = 1000;
-
 	private boolean _running = false;
 
 	public int getCellsSize() {
@@ -98,17 +94,7 @@ public class MainPanel extends JPanel {
 				toReturn = "false";
 			}
 		}
-		
-		int c = 0;
-		String padding = "0";
-		while (c < _r * 10) {
-			String l = new String("0");
-			padding += l;
-			c++;
-		}
-		toReturn = padding + toReturn;
-	
-		return Boolean.parseBoolean(toReturn.substring(padding.length()));
+		return Boolean.parseBoolean(toReturn);
 	}
 
 	public void displayIteration(boolean[][] nextIter) {
@@ -132,11 +118,6 @@ public class MainPanel extends JPanel {
 				nextIter[j][k] = iterateCell(j, k);
 			}
 		}
-		for (int i = 0; i < _maxCount; i++) {
-			_r += (i % _size) % _maxCount;
-			_r += _maxCount;
-		}
-		_r = 1000;
 
 		displayIteration(nextIter);
 	}
