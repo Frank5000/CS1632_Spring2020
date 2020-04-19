@@ -48,15 +48,6 @@ public class GameOfLifePinningTest {
 
 	@Before
 	public void setUp() {
-		/*
-		 * TODO: initialize the text fixture. For the initial pattern, use the "blinker"
-		 * pattern shown in:
-		 * https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life#Examples_of_patterns
-		 * The actual pattern GIF is at:
-		 * https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life#/media/File:Game_of_life_blinker.gif
-		 * Start from the vertical bar on a 5X5 matrix as shown in the GIF.
-		 */
-
 		size = 5;
 		deadCell = new Cell(false);
 		liveCell = new Cell(true);
@@ -85,29 +76,56 @@ public class GameOfLifePinningTest {
 		testMainPanel.setCells(testCells);
 	}
 
-
+	/**
+	 * Test case for MainPanel.iterateCell()
+	 * Preconditions: MainPanel instance testPanel has been initialized with a vertical blinker pattern
+	 * Execution steps: Call testPanel.iterateCell(2, 2)
+	 * Postconditions: iterateCell(2, 2) should have returned true
+	 */
 	@Test
 	public void testIterateCellAlive() {
 		assertTrue(testMainPanel.iterateCell(2, 2));
 	}
 
+	/**
+	 * Test case for MainPanel.iterateCell()
+	 * Preconditions: MainPanel instance testPanel has been initialized with a vertical blinker pattern
+	 * Execution steps: Call testPanel.iterateCell(1, 1)
+	 * Postconditions: iterateCell(1, 1) should have returned false
+	 */
 	@Test
 	public void testIterateCellDead() {
 		assertFalse(testMainPanel.iterateCell(1, 1));
 	}
 
+	/**
+	 * Test case for Cell.toString()
+	 * Preconditions: Cell instance liveCell has been initialized with true/alive
+	 * Execution steps: Call liveCell.toString()
+	 * Postconditions: liveCell.toString() should have returned 'X'
+	 */
 	@Test
 	public void testToStringAlive() {
 		assertEquals("X", liveCell.toString());
 	}
 
+	/**
+	 * Test case for Cell.toString()
+	 * Preconditions: Cell instance deadCell has been initialized with false/dead
+	 * Execution steps: Call deadCell.toString()
+	 * Postconditions: deadCell.toString() should have returned '.'
+	 */
 	@Test
 	public void testToStringDead() {
 		assertEquals(".", deadCell.toString());
 	}
 
 	/**
-	 * Verifies calculateNextIteration()'s output given a blinker pattern'
+	 * Test case for MainPanel.calculateNextIteration()
+	 * Preconditions: MainPanel instance testPanel has been initialized with a vertical blinker pattern
+	 * Execution steps: Call testPanel.calculateNextIteration()
+	 * Postconditions: All cells other than those comprising the horizontal blinker pattern (1,2 2,2 3,2) should
+	 *  have been set to dead. Those cells part of the horizontal blinker pattern should have been set to alive.
 	 */
 	@Test
 	public void testCalculateNextIterationBlinkerPattern() {
